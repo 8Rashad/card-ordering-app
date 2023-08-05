@@ -3,7 +3,6 @@ package com.example.cardorderingsystem.controller;
 import com.example.cardorderingsystem.model.Ticket;
 import com.example.cardorderingsystem.model.UserCard;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -14,10 +13,10 @@ import java.util.stream.Collectors;
 @RestController
 public class CardOrderController {
 
-    private List<UserCard> orders = new ArrayList<>();
-    private List<Ticket> tickets = new ArrayList<>();
-    private AtomicLong orderIdGenerator = new AtomicLong(1);
-    private AtomicLong ticketIdGenerator = new AtomicLong(1);
+    private final List<UserCard> orders = new ArrayList<>();
+    private final List<Ticket> tickets = new ArrayList<>();
+    private final AtomicLong orderIdGenerator = new AtomicLong(1);
+    private final AtomicLong ticketIdGenerator = new AtomicLong(1);
     @PostMapping("/order")
     public ResponseEntity<String> orderCard(@RequestBody UserCard userCard){
         userCard.setId(orderIdGenerator.getAndIncrement());
